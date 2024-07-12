@@ -1,11 +1,5 @@
-import Gallery from './Gallery.jsx';
-import Profile from './Profile.jsx';
+import Navbar from "./Navbar";
 
 export default function App() {
-  return (
-    <div>
-      <Gallery/>
-      <Profile/>
-    </div>
-  );
+  return <Navbar />;
 }
