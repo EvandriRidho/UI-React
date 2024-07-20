@@ -1,5 +1,4 @@
-import Navbar from "./Navbar";
-
+import Register from "./pages/register";
 export default function App() {
-  return <Navbar />;
+  return <Register />;
 }
