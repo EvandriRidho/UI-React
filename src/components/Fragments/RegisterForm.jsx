@@ -32,7 +32,7 @@ const RegisterForm = () => {
         name="confirm password"
         id="confirm password"
       />
-      <Button classname="bg-blue-600">Login</Button>
+      <Button classname="bg-blue-600 w-full">Login</Button>
     </form>
   );
 };
