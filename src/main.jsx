@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import Counter from "./pages/counter";
 import Error from "./pages/error";
 import Login from "./pages/login";
 import ProductPage from "./pages/products";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <ProductPage />,
+  },
+  {
+    path: "/counter",
+    element: <Counter />,
   },
 ]);
 
