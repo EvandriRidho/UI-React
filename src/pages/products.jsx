@@ -35,12 +35,7 @@ const products = [
 const email = localStorage.getItem("email");
 
 const ProductPage = () => {
-  const [cart, setCart] = useState([
-    {
-      id: "1",
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
   const handleLogout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
@@ -48,13 +43,15 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = (id) => {
-    setCart([
-      ...cart,
-      {
-        id: id,
-        qty: 1,
-      },
-    ]);
+    if (cart.find((item) => item.id === id)) {
+      setCart(
+        cart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { id, qty: 1 }]);
+    }
   };
   return (
     <>
@@ -83,12 +80,33 @@ const ProductPage = () => {
           })}
         </div>
         <div className="w-1/4">
-          <h1 className="text-3xl font-bold text-blue-600">Cart</h1>
-          <ul>
-            {cart.map((item) => {
-              return <li key={item}>{item.id}</li>;
-            })}
-          </ul>
+          <h1 className="text-3xl font-bold text-blue-600 ml-5 mb-2">Cart</h1>
+          <table className="text-left table-auto border-separate border-spacing-x-5">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item) => {
+                const product = products.find(
+                  (product) => product.id === item.id
+                );
+
+                return (
+                  <tr key={item.id}>
+                    <td>{product.title}</td>
+                    <td>$ {product.price}</td>
+                    <td>{item.qty}</td>
+                    <td>$ {product.price * item.qty}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
