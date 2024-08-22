@@ -1,30 +1,37 @@
 import { useEffect, useRef } from "react";
+import { login } from "../../services/Auth.service";
 import Button from "../Elements/Button/index";
 import InputForm from "../Elements/Label/index";
 
 const LoginForm = () => {
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem("email", e.target.email.value);
-    localStorage.setItem("password", e.target.password.value);
-    window.location.href = "/products";
+    // localStorage.setItem("email", e.target.email.value);
+    // localStorage.setItem("password", e.target.password.value);
+    // window.location.href = "/products";
+    const data = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+    };
+
+    login(data);
   };
 
-  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
 
   useEffect(() => {
-    emailRef.current.focus();
+    usernameRef.current.focus();
   }, []);
 
   return (
     <form onSubmit={handleLogin}>
       <InputForm
-        label="Email"
-        type="email"
-        placeholder="Enter your email"
-        name="email"
-        id="email"
-        ref={emailRef}
+        label="Username"
+        type="text"
+        placeholder="John Doe"
+        name="username"
+        id="username"
+        ref={usernameRef}
       />
       <InputForm
         label="Password"

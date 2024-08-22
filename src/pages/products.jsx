@@ -107,7 +107,13 @@ const ProductPage = () => {
                   return (
                     <tr key={item.id}>
                       <td>{product.title.substring(0, 10)}...</td>
-                      <td>$ {product.price}</td>
+                      <td>
+                        ${" "}
+                        {product.price.toLocaleString("en-US", {
+                          styles: "currency",
+                          currency: "USD",
+                        })}
+                      </td>
                       <td>{item.qty}</td>
                       <td>$ {product.price * item.qty}</td>
                     </tr>
@@ -118,7 +124,13 @@ const ProductPage = () => {
                   <b>Total Price</b>
                 </td>
                 <td>
-                  <b>$ {totalPrice}</b>
+                  <b>
+                    ${" "}
+                    {totalPrice.toLocaleString("en-US", {
+                      styles: "currency",
+                      currency: "USD",
+                    })}
+                  </b>
                 </td>
               </tr>
             </tbody>
